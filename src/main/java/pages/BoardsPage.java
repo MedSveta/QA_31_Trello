@@ -28,11 +28,18 @@ public class BoardsPage extends BasePage {
 
     public void createNewBoard(Board board){
         btnCreateNewBoard.click();
+        clickWait(inputBoardTitle);
         inputBoardTitle.sendKeys(board.getBoardTitle());
     }
 
     public void clickBtnCreate(){
         clickWait(btnCreate);
+    }
+
+    public boolean buttonCreateIsNotClickable(){
+        return new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.not(ExpectedConditions
+                        .elementToBeClickable(btnCreate)));
     }
 
 
