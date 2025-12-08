@@ -26,7 +26,10 @@ public class BoardsPage extends BasePage {
     @FindBy(xpath = "//button[@data-testid='create-board-submit-button']")
     WebElement btnCreate;
 
+
+
     public void createNewBoard(Board board){
+        pause(2);
         btnCreateNewBoard.click();
         clickWait(inputBoardTitle);
         inputBoardTitle.sendKeys(board.getBoardTitle());
