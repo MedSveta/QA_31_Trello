@@ -26,20 +26,25 @@ public class BoardsPage extends BasePage {
     @FindBy(xpath = "//button[@data-testid='create-board-submit-button']")
     WebElement btnCreate;
 
+    @FindBy(xpath = "//span[@class = 'VmbXKMJLSqfD0U']")
+    WebElement popUpMessageDelete;
 
+    public boolean validatePopUpMessage(String text) {
+        return validateTextInElement(popUpMessageDelete, text);
+    }
 
-    public void createNewBoard(Board board){
+    public void createNewBoard(Board board) {
         pause(2);
         btnCreateNewBoard.click();
         clickWait(inputBoardTitle);
         inputBoardTitle.sendKeys(board.getBoardTitle());
     }
 
-    public void clickBtnCreate(){
+    public void clickBtnCreate() {
         clickWait(btnCreate);
     }
 
-    public boolean buttonCreateIsNotClickable(){
+    public boolean buttonCreateIsNotClickable() {
         return new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.not(ExpectedConditions
                         .elementToBeClickable(btnCreate)));
